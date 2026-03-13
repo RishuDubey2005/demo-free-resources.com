@@ -81,7 +81,7 @@ async function sendOtp(req, res) {
         try {
             await sendVerificationCode(email, otp);
             return res.status(200).json({
-                message: 'OTP sent successfully. Check your email.'
+                message: 'OTP sent successfully. Check your email.(⚠️spam also)'
             });
         } catch (emailError) {
             console.error('Email sending failed:', emailError);
