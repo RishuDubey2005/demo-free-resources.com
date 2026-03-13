@@ -11,7 +11,7 @@ app.use(cors({
   origin: [
     "http://127.0.0.1:5500",
     "http://localhost:5500",
-    "https://spotify-songs-frontend.onrender.com",
+    "https://demo-free-content-com.onrender.com",
     process.env.FRONTEND_URL
   ],
   credentials: true
