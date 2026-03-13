@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Forgot Password</title>
+</head>
+<body>
+    <div id="loader" class="loader hidden"></div>
+    <div id="header"></div>
+    <script src="header.js"></script>
+    
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-icon">🔓</div>
+            <h2>Reset Password</h2>
+            
+            <form id="forgotForm" class="auth-form">
+                <!-- Step 1: Email -->
+                <div id="email-section">
+                    <div class="form-group">
+                        <label for="f-email">📧 Registered Email</label>
+                        <input type="email" id="f-email" name="email" placeholder="Enter your email" required>
+                    </div>
+                    <button type="button" id="f-send-otp-btn" class="btn-primary">📤 Send OTP</button>
+                    <span id="f-otp-status"></span>
+                </div>
+
+                <!-- Step 2: OTP -->
+                <div id="f-otp-section" class="hidden">
+                    <div class="form-group">
+                        <label for="f-otp">🔢 Enter OTP</label>
+                        <input type="text" id="f-otp" name="otp" placeholder="6-digit OTP" maxlength="6">
+                    </div>
+                    <button type="button" id="f-verify-otp-btn" class="btn-primary">✅ Verify OTP</button>
+                </div>
+
+                <!-- Step 3: New Password -->
+                <div id="f-password-section" class="hidden">
+                    <div class="form-group">
+                        <label for="f-new-password">🔑 New Password</label>
+                        <input type="password" id="f-new-password" placeholder="Enter new password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="f-confirm-password">🔑 Confirm Password</label>
+                        <input type="password" id="f-confirm-password" placeholder="Re-enter password" required>
+                    </div>
+                    <button type="button" id="f-reset-btn" class="btn-primary">🔄 Update Password</button>
+                </div>
+
+                <div class="auth-footer">
+                    <a href="login.html"><button type="button" class="btn-link">← Back to Login</button></a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="footer-placeholder"></div>
+    <script src="script.js"></script>
+</body>
+</html>
