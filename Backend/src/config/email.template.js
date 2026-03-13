@@ -148,7 +148,7 @@ const Welcome_Template = `
   </head>
   <body>
       <div class="container">
-          <div class="header">Welcome to Free Resources Platform of NIT Patna!</div>
+          <div class="header">"Welcome to Free Resources Platform" of NIT Patna!</div>
           <div class="content">
               <p class="welcome-message">Hello {name},</p>
               <p>We’re thrilled to have you join us! Your registration was successful, and we’re committed to providing you with the best experience possible.</p>
