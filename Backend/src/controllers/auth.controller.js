@@ -151,9 +151,7 @@ async function registerUser(req, res) {
         otpStorage.delete(email);
 
         // Check if user already exists (double check)
-        const isUserAlreadyExist = await userModel.findOne({
-            $or: [{ username }, { email }]
-        });
+        const isUserAlreadyExist = await userModel.findOne({ email });
 
         if (isUserAlreadyExist) {
             return res.status(409).json({
