@@ -58,9 +58,7 @@ async function sendOtp(req, res) {
         }
 
         // Check if user already exists
-        const isUserAlreadyExist = await userModel.findOne({
-            $or: [{ username }, { email }]
-        });
+        const isUserAlreadyExist = await userModel.findOne({ email });
 
         if (isUserAlreadyExist) {
             return res.status(409).json({
