@@ -327,13 +327,33 @@ handleVisitCount();
 
 function showLoader() {
     const loader = document.getElementById("loader");
-    if (loader) loader.classList.remove("hidden");
+    if (loader) {
+        loader.classList.remove("hidden");
+        
+        // ✅ Create overlay if not exists
+        if (!document.getElementById("loader-overlay")) {
+            const overlay = document.createElement("div");
+            overlay.id = "loader-overlay";
+            overlay.className = "loader-overlay";
+            document.body.appendChild(overlay);
+        }
+        document.getElementById("loader-overlay").style.display = "block";
+        document.body.style.overflow = "hidden";
+    }
 }
 
 function hideLoader() {
     const loader = document.getElementById("loader");
-    if (loader) loader.classList.add("hidden");
+    if (loader) {
+        loader.classList.add("hidden");
+        
+        // ✅ Hide overlay
+        const overlay = document.getElementById("loader-overlay");
+        if (overlay) overlay.style.display = "none";
+        document.body.style.overflow = "";
+    }
 }
+
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // Check Login (for public pages)
