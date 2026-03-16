@@ -81,6 +81,18 @@ fetch("header.html")
       document.getElementById("sbSidebar").classList.remove("active");
     };
 
+    // ✅ Close sidebar when clicking outside
+    document.addEventListener('click', function(e) {
+        const sidebar = document.getElementById('sbSidebar');
+        const menuIcon = document.querySelector('.sb-menu-icon');
+        
+        if (sidebar && sidebar.classList.contains('active')) {
+            if (!sidebar.contains(e.target) && !menuIcon.contains(e.target)) {
+                closeSidebar();
+            }
+        }
+    });
+      
     // ===================================================================
     // ⚡ DROPDOWN TOGGLE INSIDE SIDEBAR
     // ===================================================================
