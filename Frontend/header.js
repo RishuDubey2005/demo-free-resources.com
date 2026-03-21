@@ -80,14 +80,19 @@ fetch("header.html")
     window.closeSidebar = function () {
       document.getElementById("sbSidebar").classList.remove("active");
     };
-
+      
     // ✅ Close sidebar when clicking outside
     document.addEventListener('click', function(e) {
         const sidebar = document.getElementById('sbSidebar');
         const menuIcon = document.querySelector('.sb-menu-icon');
+        const openMenuBtn = document.querySelector('.cta-button');
         
         if (sidebar && sidebar.classList.contains('active')) {
-            if (!sidebar.contains(e.target) && !menuIcon.contains(e.target)) {
+            const isClickInsideSidebar = sidebar.contains(e.target);
+            const isClickOnMenuIcon = menuIcon && menuIcon.contains(e.target);
+            const isClickOnOpenBtn = openMenuBtn && openMenuBtn.contains(e.target);
+            
+            if (!isClickInsideSidebar && !isClickOnMenuIcon && !isClickOnOpenBtn) {
                 closeSidebar();
             }
         }
