@@ -407,11 +407,11 @@ async function sendForgotPasswordOtp(req, res) {
             verified: false
         });
 
-        // ✅ CHANGED: Added try-catch for email sending
+        // ✅ Send forgot password OTP with user's name
         try {
-            await sendVerificationCode(email, otp);
+            await sendForgotPasswordCode(email, otp, user.username);
             return res.status(200).json({
-                message: 'OTP sent successfully. Check your email.(⚠️spam also)'
+                message: 'OTP sent successfully. Check your email.(🚨SPAM also🚨)'
             });
         } catch (emailError) {
             console.error('Email sending failed:', emailError);
