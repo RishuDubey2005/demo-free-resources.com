@@ -296,6 +296,17 @@ async function viewUserDetails(userId) {
                             <span class="detail-value">${formatDate(user.lastSeenNotificationTime)}</span>
                         </div>
                     ` : ''}
+                    ${user.lastVisitedAt ? `
+                        <div class="detail-item">
+                            <span class="detail-label">🕐 Last Visited</span>
+                            <span class="detail-value">${formatDate(user.lastVisitedAt)}</span>
+                        </div>
+                    ` : `
+                        <div class="detail-item">
+                            <span class="detail-label">🕐 Last Visited</span>
+                            <span class="detail-value">Never</span>
+                        </div>
+                    `}
                 </div>
                 
                 ${user.isBlocked ? `
