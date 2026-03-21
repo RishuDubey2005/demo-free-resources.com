@@ -1,8 +1,7 @@
 const userModel = require('../models/user.model.js');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
-const { sendVerificationCode, WelcomeEmail } = require('../config/email.verify.js');
-
+const { sendVerificationCode, sendForgotPasswordCode, WelcomeEmail } = require('../config/email.verify.js');
 // Temporary OTP storage (In production, use Redis)
 const otpStorage = new Map();
 
