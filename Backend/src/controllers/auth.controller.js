@@ -256,6 +256,9 @@ async function loginUser(req, res) {
             });
         }
 
+        // ✅ Update last visited time
+        user.lastVisitedAt = new Date();
+        await user.save();
         const token = jwt.sign({
             id: user._id,
             role: user.role
@@ -345,6 +348,10 @@ async function getMe(req, res) {
             return res.status(404).json({ message: "User not found" });
         }
 
+        // ✅ Update last visited time
+        user.lastVisitedAt = new Date();
+        await user.save();
+        
         // Extract branch from email
         let branch = null;
         const match = user.email.match(/\.([a-z]{2})@nitp\.ac\.in$/i);
