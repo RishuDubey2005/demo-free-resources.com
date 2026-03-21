@@ -50,7 +50,7 @@ if (sendOtpBtn) {
             const data = await res.json();
 
             if (res.ok) {
-                otpStatus.textContent = "✅ OTP sent! Check your email.(⚠️Spam also)";
+                otpStatus.textContent = "✅ OTP sent! Check your email.(🚨SPAM also🚨)";
                 otpStatus.classList.remove("error");
                 otpInputSection.classList.remove("hidden");
                 
@@ -460,7 +460,7 @@ if (fSendOtpBtn) {
 
             if (res.ok) {
                 forgotPasswordEmail = email;
-                fOtpStatus.textContent = "✅ OTP sent! Check your email.";
+                fOtpStatus.textContent = "✅ OTP sent! Check your email.(🚨SPAM also🚨)";
                 fOtpStatus.classList.remove("error");
                 fOtpSection.classList.remove("hidden");
                 
