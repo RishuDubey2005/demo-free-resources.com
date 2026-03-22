@@ -257,7 +257,8 @@ async function loginUser(req, res) {
 
         // ✅ Update last visited time
         user.lastVisitedAt = new Date();
-        await user.save();
+        await user.save();        
+
         const token = jwt.sign({
             id: user._id,
             role: user.role
@@ -350,7 +351,7 @@ async function getMe(req, res) {
         // ✅ Update last visited time
         user.lastVisitedAt = new Date();
         await user.save();
-        
+
         // Extract branch from email
         let branch = null;
         const match = user.email.match(/\.([a-z]{2})@nitp\.ac\.in$/i);
@@ -563,13 +564,14 @@ async function updateProfile(req, res) {
             return res.status(404).json({ message: "User not found" });
         }
 
-        const { username, mobile, rollNo, passingYear } = req.body;
+        const { username, mobile, rollNo, passingYear, gender } = req.body;
 
         // Update only provided fields
         if (username !== undefined && username.trim() !== '') user.username = username.trim();
         if (mobile !== undefined) user.mobile = mobile;
         if (rollNo !== undefined) user.rollNo = rollNo;
         if (passingYear !== undefined) user.passingYear = passingYear;
+        if (gender !== undefined) user.gender = gender;
         
         await user.save();
 
@@ -583,6 +585,7 @@ async function updateProfile(req, res) {
                 mobile: user.mobile,
                 rollNo: user.rollNo,
                 passingYear: user.passingYear,
+                gender: user.gender,
                 isBlocked: user.isBlocked,
                 blockReason: user.blockReason,
                 blockedAt: user.blockedAt,
