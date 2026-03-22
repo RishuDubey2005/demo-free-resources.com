@@ -59,6 +59,11 @@ const userSchema = new mongoose.Schema({
     passingYear: {
         type: Number,
         default: null
+    },
+    gender: {
+        type: String,
+        enum: ['Male', 'Female', 'Other', null],
+        default: null
     }
 }, { timestamps: true });
 
