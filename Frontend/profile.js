@@ -42,22 +42,27 @@ async function loadProfile() {
         const mobileEl = document.getElementById('profile-mobile');
         const rollEl = document.getElementById('profile-roll');
         const yearEl = document.getElementById('profile-year');
+        const genderEl = document.getElementById('profile-gender');
         
         if (mobileEl) mobileEl.textContent = user.mobile || 'Not added';
         if (rollEl) rollEl.textContent = user.rollNo || 'Not added';
         if (yearEl) yearEl.textContent = user.passingYear || 'Not added';
+        if (genderEl) genderEl.textContent = user.gender || 'Not added';
+        
         
         // Fill edit inputs
         const editName = document.getElementById('edit-name');
         const editMobile = document.getElementById('edit-mobile');
         const editRoll = document.getElementById('edit-roll');
         const editYear = document.getElementById('edit-year');
+        const editGender = document.getElementById('edit-gender');
 
         if (editName) editName.value = user.username || '';
         if (editMobile) editMobile.value = user.mobile || '';
         if (editRoll) editRoll.value = user.rollNo || '';
         if (editYear) editYear.value = user.passingYear || '';   
-
+        if (editGender) editGender.value = user.gender || '';
+        
         // Update status
         const statusEl = document.getElementById('profile-status');
         if (user.isBlocked) {
@@ -97,6 +102,7 @@ async function saveProfile() {
     const mobile = document.getElementById('edit-mobile')?.value.trim() || null;
     const rollNo = document.getElementById('edit-roll')?.value.trim() || null;
     const passingYear = document.getElementById('edit-year')?.value || null;
+    const gender = document.getElementById('edit-gender')?.value || null;
     
     btn.disabled = true;
     btn.textContent = '⏳ Saving...';
@@ -107,6 +113,7 @@ async function saveProfile() {
         if (username) body.username = username;
         if (document.getElementById('edit-roll')) body.rollNo = rollNo;
         if (document.getElementById('edit-year')) body.passingYear = passingYear ? parseInt(passingYear) : null;
+        if (gender) body.gender = gender;
         
         const res = await fetch(`${API}/api/auth/update-profile`, {
             method: 'PUT',
@@ -126,12 +133,14 @@ async function saveProfile() {
             const mobileEl = document.getElementById('profile-mobile');
             const rollEl = document.getElementById('profile-roll');
             const yearEl = document.getElementById('profile-year');
+            const genderEl = document.getElementById('profile-gender');
             
             if (nameEl && username) nameEl.textContent = username;
             if (mobileEl) mobileEl.textContent = mobile || 'Not added';
             if (rollEl) rollEl.textContent = rollNo || 'Not added';
             if (yearEl) yearEl.textContent = passingYear || 'Not added';
-
+            if (genderEl) genderEl.textContent = gender || 'Not added';
+            
             // Update avatar if name changed
             if (username) {
                 const avatar = document.getElementById('profile-avatar');
