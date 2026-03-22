@@ -50,6 +50,10 @@
                     <span class="info-label">📞 Mobile</span>
                     <span class="info-value" id="profile-mobile">Not added</span>
                 </div>
+                <div class="info-row">
+                    <span class="info-label">⚧️ Gender</span>
+                    <span class="info-value" id="profile-gender">Not added</span>
+                </div>
             </div>
 
             <!-- Edit Profile Section -->
@@ -63,6 +67,15 @@
                     <div class="edit-row">
                         <label>📞 Mobile Number</label>
                         <input type="tel" id="edit-mobile" placeholder="Enter mobile number" maxlength="10">
+                    </div>
+                    <div class="edit-row">
+                        <label for="edit-gender">⚧️ Gender (Optional)</label>
+                        <select id="edit-gender">
+                            <option value="">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
                     </div>
                     <button id="save-profile-btn" class="save-btn">💾 Save Changes</button>
                     <span id="save-status"></span>
