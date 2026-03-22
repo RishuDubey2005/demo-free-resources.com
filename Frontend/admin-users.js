@@ -144,6 +144,7 @@ async function loadUsers(page = 1, append = false) {
         if (currentFilters.blocked) queryParams.append('blocked', currentFilters.blocked);
         if (currentFilters.afterDate) queryParams.append('afterDate', currentFilters.afterDate);
         if (currentFilters.beforeDate) queryParams.append('beforeDate', currentFilters.beforeDate);
+        if (currentFilters.gender) queryParams.append('gender', currentFilters.gender);
         
         const res = await fetch(`${API}/api/users/all?${queryParams}`, {
             credentials: 'include',
@@ -202,7 +203,8 @@ function applyFilters() {
         role: document.getElementById('filter-role').value,
         blocked: document.getElementById('filter-blocked').value,
         afterDate: document.getElementById('filter-after-date').value,
-        beforeDate: document.getElementById('filter-before-date').value
+        beforeDate: document.getElementById('filter-before-date').value,
+        gender: document.getElementById('filter-gender').value
     };
     
     usersCurrentPage = 1;
@@ -216,6 +218,7 @@ function clearFilters() {
     document.getElementById('filter-blocked').value = '';
     document.getElementById('filter-after-date').value = '';
     document.getElementById('filter-before-date').value = '';
+    document.getElementById('filter-gender').value = '';
     
     currentFilters = {};
     usersCurrentPage = 1;
@@ -289,6 +292,10 @@ async function viewUserDetails(userId) {
                     <div class="detail-item">
                         <span class="detail-label">🎓 Passing Year</span>
                         <span class="detail-value">${user.passingYear || 'Not added'}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">⚧️ Gender</span>
+                        <span class="detail-value">${user.gender || 'Not added'}</span>
                     </div>
                     ${user.lastSeenNotificationTime ? `
                         <div class="detail-item">
