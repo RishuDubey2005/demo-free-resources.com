@@ -106,6 +106,12 @@ async function getUsers(req, res) {
             }
         }
         
+        // Filter by gender
+        const gender = req.query.gender;
+        if (gender && gender.trim() !== '' && gender !== 'all') {
+            filter.gender = gender;
+        }
+        
         const users = await userModel
             .find(filter)
             .select('-password') // Exclude password
