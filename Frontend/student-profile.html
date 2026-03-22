@@ -58,6 +58,10 @@
                     <span class="info-label">🎓 Passing Year</span>
                     <span class="info-value" id="profile-year">Not added</span>
                 </div>
+                <div class="info-row">
+                    <span class="info-label">⚧️ Gender</span>
+                    <span class="info-value" id="profile-gender">Not added</span>
+                </div>
             </div>
 
             <!-- Edit Profile Section -->
@@ -79,6 +83,15 @@
                     <div class="edit-row">
                         <label>🎓 Passing Year</label>
                         <input type="number" id="edit-year" placeholder="e.g. 2025" min="2020" max="2035">
+                    </div>
+                    <div class="edit-row">
+                        <label for="edit-gender">⚧️ Gender (Optional)</label>
+                        <select id="edit-gender">
+                            <option value="">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
                     </div>
                     <button id="save-profile-btn" class="save-btn">💾 Save Changes</button>
                     <span id="save-status"></span>
