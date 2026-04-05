@@ -135,7 +135,7 @@ async function fetchUnreadCount() {
     try {
         const API = location.hostname === "localhost" || location.hostname === "127.0.0.1"
             ? "http://localhost:3000"
-            : "https://nitp-free-resources-com-backend.onrender.com";
+            : "https://demo-free-resources-com.onrender.com";
         
         const token = localStorage.getItem('token');
         const headers = { 'Content-Type': 'application/json' };
