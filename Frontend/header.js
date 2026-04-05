@@ -80,7 +80,6 @@ fetch("header.html")
     window.closeSidebar = function () {
       document.getElementById("sbSidebar").classList.remove("active");
     };
-      
     // ✅ Close sidebar when clicking outside
     document.addEventListener('click', function(e) {
         const sidebar = document.getElementById('sbSidebar');
@@ -97,7 +96,6 @@ fetch("header.html")
             }
         }
     });
-      
     // ===================================================================
     // ⚡ DROPDOWN TOGGLE INSIDE SIDEBAR
     // ===================================================================
@@ -137,7 +135,7 @@ async function fetchUnreadCount() {
     try {
         const API = location.hostname === "localhost" || location.hostname === "127.0.0.1"
             ? "http://localhost:3000"
-            : "https://demo-free-resources-com.onrender.com";
+            : "https://nitp-free-resources-com-backend.onrender.com";
         
         const token = localStorage.getItem('token');
         const headers = { 'Content-Type': 'application/json' };
@@ -165,3 +163,53 @@ setTimeout(fetchUnreadCount, 500); // Wait for header to fully load
 // Refresh unread count every 2 minutes
 
 setInterval(fetchUnreadCount, 120000);
+
+// ===================================================================
+// 🔍 LOST & FOUND BADGE
+// ===================================================================
+
+// Update lost items badge
+window.updateLostBadge = function(count) {
+    const badge = document.getElementById('lost-items-badge');
+    if (badge) {
+        if (count > 0) {
+            badge.textContent = count;
+            badge.classList.remove('hidden');
+        } else {
+            badge.classList.add('hidden');
+        }
+    }
+};
+
+// Fetch unseen lost items count
+async function fetchUnseenLostItems() {
+    try {
+        const API = location.hostname === "localhost" || location.hostname === "127.0.0.1"
+            ? "http://localhost:3000"
+            : "https://nitp-free-resources-com-backend.onrender.com";
+
+        const token = localStorage.getItem('token');
+        const headers = { 'Content-Type': 'application/json' };
+        if (token) {
+            headers['Authorization'] = `Bearer ${token}`;
+        }
+
+        const res = await fetch(`${API}/api/lost-items/unseen-count`, {
+            credentials: 'include',
+            headers: headers
+        });
+
+        if (res.ok) {
+            const data = await res.json();
+            updateLostBadge(data.unseenCount);
+        }
+    } catch (err) {
+        console.log('Error fetching unseen lost items:', err);
+    }
+}
+
+// Fetch on load
+setTimeout(fetchUnseenLostItems, 800);
+
+// Refresh every 2 minutes
+setInterval(fetchUnseenLostItems, 120000);
