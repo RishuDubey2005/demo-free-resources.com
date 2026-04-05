@@ -1,3 +1,12 @@
+// import { loginUser } from './js/auth.js';
+// import { sendOtp } from './js/otp.js';
+// import { getProfile } from './js/user.js';
+// import { incrementVisit } from './js/visits.js';
+// import { checkBlock } from './js/block.js';
+// import { showLoader, hideLoader } from './js/utils.js';
+
+
+
 const API =
   location.hostname === "localhost" || location.hostname === "127.0.0.1"
     ? "http://localhost:3000"
@@ -353,8 +362,6 @@ function hideLoader() {
         document.body.style.overflow = "";
     }
 }
-
-
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // Check Login (for public pages)
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
