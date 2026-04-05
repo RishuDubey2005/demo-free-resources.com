@@ -216,7 +216,7 @@ async function loginUser(req, res) {
         // Professor email validation (no numbers allowed)
         if (role === 'Professor' && !isProfessorEmail(email)) {
             return res.status(400).json({
-                message: 'Unauthorised Access. Professor email should be like (name.branch@nitp.ac.in)'
+                message: 'Unauthorised Access. You are not Professor. Professor email should look like (name.branch@nitp.ac.in)'
             });
         }
 
