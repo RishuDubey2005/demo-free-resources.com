@@ -52,7 +52,7 @@ async function sendOtp(req, res) {
         // Professor email validation (no numbers allowed)
         if (role === 'Professor' && !isProfessorEmail(email)) {
             return res.status(400).json({
-                message: 'Professor email should be like name.branch@nitp.ac.in'
+                message: 'You are not Professor. Professor email should look like name.branch@nitp.ac.in'
             });
         }
 
@@ -118,7 +118,7 @@ async function registerUser(req, res) {
         // Professor email validation (no numbers allowed)
         if (role === 'Professor' && !isProfessorEmail(email)) {
             return res.status(400).json({
-                message: 'Professor email should be like name.branch@nitp.ac.in'
+                message: 'You are not Professor. Professor email should look like name.branch@nitp.ac.in'
             });
         }
 
