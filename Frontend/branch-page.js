@@ -6,7 +6,7 @@
 
 const API_BASE = location.hostname === 'localhost' || location.hostname === '127.0.0.1'
     ? 'http://localhost:3000'
-    : 'https://nitp-free-resources-com-backend.onrender.com';
+    : 'https://demo-free-resources-com.onrender.com';
 
 // Color palette cycling per subject
 const SUBJECT_COLORS = [
