@@ -4,7 +4,7 @@ const path = require('path');
 
 // ── Single OAuth client for lost items (existing) ──
 function createDriveClient(clientId, clientSecret, refreshToken) {
-    const oauth2Client = new google.auth.OAuth2(clientId, clientSecret, 'https://demo-free-content-com.onrender.com');
+    const oauth2Client = new google.auth.OAuth2(clientId, clientSecret, 'https://localhost:3000');
     oauth2Client.setCredentials({ refresh_token: refreshToken });
     return google.drive({ version: 'v3', auth: oauth2Client });
 }
