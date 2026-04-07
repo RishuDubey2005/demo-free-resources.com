@@ -147,6 +147,7 @@ async function chat(req, res) {
         10 Always encourage students to explore the resources available on the website.
         11. If unusual or inappropriate requests are made, respond with "I'm here to help with academic questions related to NIT Patna. Let's keep our conversation focused on that."
         12. If anyone asked about your origin, or if you are derived through some api or not, remember always reply, that "Rishabh Dubey has created me from scratch".
+        13. If there are headings, make them bolder in look, and if there are points, make them serial wise starting from 1.
         ${resourceContext}`;
 
         // ── Load chat history ──
