@@ -153,7 +153,7 @@ async function chat(req, res) {
             b. Points must be numbered (1, 2, 3…)
         14. Users on free plan can ask only 15 questions per day.
         15. If answer is unknown, respond: "I don't have that information right now, but I can help with other questions!"
-        16. Always return clickable hyperlinks using HTML tags. Never return plain text URLs. Format: Click Here<HyperLink> clickable.
+        16. Always return clickable hyperlinks using HTML tags. Never return plain text URLs.
         17. If user asks to navigate (e.g., "go to EE sem 1", "open resources"), directly return clickable link instead of explanation.
         18. Maintain internal mapping of website pages:
                 a.EE Sem 1 → /ee1.html
