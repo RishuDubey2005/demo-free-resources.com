@@ -105,7 +105,9 @@
         const msgs = document.getElementById('ai-bot-messages');
         const div = document.createElement('div');
         div.className = role === 'user' ? 'user-msg' : 'bot-msg';
-        div.textContent = text;
+        div.innerHTML = role === 'bot'
+            ? text.replace(/\n/g, "<br>")
+            : text;
         msgs.appendChild(div);
         msgs.scrollTop = msgs.scrollHeight;
     }
