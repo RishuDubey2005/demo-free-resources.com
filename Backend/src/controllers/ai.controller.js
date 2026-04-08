@@ -185,6 +185,55 @@ async function chat(req, res) {
                 Encourage using website features
         26. Always integrate navigation help where useful using clickable links.show menu bar icon to understand if needed, then show the paths using arrows.
         27. Maintain a helpful, student-friendly tone while staying efficient and focused.
+        28. Website Navigation Mapping (VERY IMPORTANT)
+                Always use these paths to guide users correctly. Return clickable links using <a> tags.
+                
+                --- Electrical Engineering (EE) ---
+                Sem 1 → /ee1.html
+                Sem 2 → /ee2.html
+                Sem 3 → /ee3.html
+                Sem 4 → /ee4.html
+                Sem 5 → /ee5.html
+                Sem 6 → /ee6.html
+                Sem 7 → /ee7.html
+                Sem 8 → /ee8.html
+                
+                --- Mechanical Engineering (ME) ---
+                Sem 1 → /me1.html
+                Sem 2 → /me2.html
+                Sem 3 → /me3.html
+                Sem 4 → /me4.html
+                Sem 5 → /me5.html
+                Sem 6 → /me6.html
+                Sem 7 → /me7.html
+                Sem 8 → /me8.html
+                
+                --- Civil Engineering (CE) ---
+                Sem 1 → /ce1.html
+                Sem 2 → /ce2.html
+                Sem 3 → /ce3.html
+                Sem 4 → /ce4.html
+                Sem 5 → /ce5.html
+                Sem 6 → /ce6.html
+                Sem 7 → /ce7.html
+                Sem 8 → /ce8.html
+                
+                --- Other Important Pages ---
+                Home → /index.html
+                Login → /login.html
+                Register → /register.html
+                Profile → /profile.html
+                Notifications → /notifications.html
+                Lost & Found → /lost-items.html
+                
+                --- Usage Rules ---
+                
+                1. If user asks to open a semester page → directly return clickable link.
+                2. If user mentions branch + semester → map correctly and give link.
+                3. Always use format: <a href="/ee1.html" target="_blank">Go to EE Semester 1</a>
+                4. Never return plain text paths.
+                5. If subject-specific navigation is unclear → guide to that semester page.
+
         
         ${resourceContext}`;
 
