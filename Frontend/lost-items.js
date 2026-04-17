@@ -361,7 +361,7 @@ async function handleUpload(e) {
 
     submitBtn.disabled = true;
     submitBtn.innerHTML = '⏳ Uploading to Drive...';
-    status.textContent = '📤 Uploading image to Google Drive...';
+    status.textContent = '📤 Uploading image...';
     status.className = 'upload-status sending';
 
     const formData = new FormData();
