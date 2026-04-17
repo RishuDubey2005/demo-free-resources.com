@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Admin Profile - NITP Resources</title>
+</head>
+<body>
+    <div id="loader" class="loader hidden"></div>
+    <div id="header"></div>
+    <script src="header.js"></script>
+    
+    <div class="admin-container">
+        <h2>👑 Admin Profile</h2>
+        <h2 id="page-heading"></h2>
+        
+        <button id="logout" class="logout-btn">Logout</button>
+
+        
+        <!-- Stats Overview -->
+        <div class="admin-stats-overview" id="admin-stats">
+            <div class="stat-card">
+                <span class="stat-icon">👥</span>
+                <div class="stat-info">
+                    <span class="stat-value" id="stat-total-users">-</span>
+                    <span class="stat-label">Total Users</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-icon">🎓</span>
+                <div class="stat-info">
+                    <span class="stat-value" id="stat-students">-</span>
+                    <span class="stat-label">Students</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-icon">👨‍🏫</span>
+                <div class="stat-info">
+                    <span class="stat-value" id="stat-professors">-</span>
+                    <span class="stat-label">Professors</span>
+                </div>
+            </div>
+            <div class="stat-card stat-blocked">
+                <span class="stat-icon">🚫</span>
+                <div class="stat-info">
+                    <span class="stat-value" id="stat-blocked">-</span>
+                    <span class="stat-label">Blocked</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-icon">📅</span>
+                <div class="stat-info">
+                    <span class="stat-value" id="stat-today">-</span>
+                    <span class="stat-label">Today</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="user-search-box" style="margin-bottom:16px;">
+            <h4>Choose Admin Section</h4>
+            <select id="admin-section-select" style="padding:10px 14px;border-radius:8px;border:1px solid #d1d5db;font-size:14px;min-width:260px;background:#f9fafb;">
+                <option value="">Select Section</option>
+                <option value="notifications">Notification Management</option>
+                <option value="resources">Resource Management</option>
+                <option value="tokens">Google Drive Token Management</option>
+                <option value="users">User Management</option>
+            </select>
+        </div>
+
+        <!-- Notification Management Section -->
+        <div class="admin-section" data-admin-section="notifications">
+            <h3>📢 Notification Management 1️⃣</h3>
+            
+            <!-- Create New Notification -->
+            <div class="notification-create-box">
+                <h4>➕ Add New Notification</h4>
+                <textarea id="new-notification-input" placeholder="Type your notification message here..." rows="3"></textarea>
+                <button id="add-notification-btn" class="add-notification-btn">📤 Add Notification</button>
+                <span id="add-notification-status"></span>
+            </div>
+            
+            <!-- Existing Notifications List -->
+            <div class="admin-notifications-list">
+                <h4>📋 Manage Existing Notifications</h4>
+                <div id="admin-notification-list">
+                    <!-- Notifications will be loaded here -->
+                </div>
+                <div id="admin-load-more-container" class="load-more-container hidden">
+                    <button id="admin-load-more-btn" class="load-more-btn">📥 Load More</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 📚 Resource Management (Admin) -->
+        <div class="admin-section" data-admin-section="resources">
+            <h3>📚 Resource Management 2️⃣</h3>
+            
+            <!-- 6-month old files alert -->
+            <div id="admin-old-alert" class="hidden" style="background:#fff3cd;border:1px solid #ffc107;border-radius:8px;padding:12px;margin-bottom:12px;">
+                <strong>⚠️ Old Files (6+ months, unpinned):</strong>
+                <div id="admin-old-list" style="margin-top:8px;"></div>
+            </div>
+            
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px;">
+                <a href="resources-upload.html"><button class="add-notification-btn">📤 Upload / Manage Resources</button></a>
+            </div>
+
+            <!-- Filter for admin resource view -->
+            <div class="user-search-box">
+                <h4>🔍 Filter Resources</h4>
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <label for="admin-res-branch">Branch:</label>
+                        <select id="admin-res-branch">
+                            <option value="">All</option>
+                            <option value="EE">EE</option>
+                            <option value="ME">ME</option>
+                            <option value="CE">CE</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="admin-res-semester">Semester:</label>
+                        <select id="admin-res-semester">
+                            <option value="">All</option>
+                            <option value="1">Sem 1</option><option value="2">Sem 2</option>
+                            <option value="3">Sem 3</option><option value="4">Sem 4</option>
+                            <option value="5">Sem 5</option><option value="6">Sem 6</option>
+                            <option value="7">Sem 7</option><option value="8">Sem 8</option>
+                        </select>
+                    </div>
+                    <button id="admin-res-filter-btn" class="apply-btn">✅ Filter</button>
+                    <button id="admin-res-clear-btn" class="clear-btn">❌ Clear</button>
+                </div>
+            </div>
+            
+            <div id="admin-resources-list" style="margin-top:12px;">
+                <p style="color:#888;">Use filter above to view resources.</p>
+            </div>
+            <div id="admin-res-load-more-container" class="load-more-container hidden">
+                <button id="admin-res-load-more-btn" class="load-more-btn">📥 Load More</button>
+            </div>
+        </div>
+        
+        
+        <!-- 🔑 Drive Token Management Section -->
+        <div class="admin-section" data-admin-section="tokens">
+            <h3>🔑 Google Drive Token Management 3️⃣</h3>
+            
+            <!-- One-time seed button -->
+            <div style="margin-bottom:16px;">
+                <button id="seed-tokens-btn" class="add-notification-btn" style="background:linear-gradient(135deg,#f59e0b,#d97706);">
+                    🌱 Seed Tokens from .env (Run Once)
+                </button>
+                <span id="seed-status" style="font-size:13px;margin-left:10px;"></span>
+            </div>
+
+            <!-- Global success/error message from OAuth callback -->
+            <div id="token-global-msg" style="display:none;padding:12px 16px;border-radius:10px;font-size:13px;font-weight:600;margin-bottom:16px;"></div>
+
+            <p style="color:#888;font-size:13px;margin:0 0 14px;">
+                Manage OAuth refresh tokens for all 4 Drive storage accounts. 
+                Select a label, check its status, then auto-generate or manually paste a new token.
+            </p>
+
+            <!-- Search by label -->
+            <div class="user-search-box">
+                <h4>🔍 Check Token Status</h4>
+                <ul>Lost: storage1.dubey8769@gmail.com</ul>
+                <ul>EE: storage2.dubey8769@gmail.com</ul>
+                <ul>ME: storage3.dubey8769@gmail.com</ul>
+                <ul>CE: storage4.dubey8769@gmail.com</ul>
+
+                <div class="search-row" style="align-items:center;gap:10px;flex-wrap:wrap;">
+                    <select id="token-label-select" style="padding:8px 14px;border-radius:8px;border:1px solid #d1d5db;font-size:14px;background:#f9fafb;">
+                        <option value="">— Select Drive Account —</option>
+                        <option value="LOST">📦 LOST (Lost &amp; Found images)</option>
+                        <option value="EE">⚡ EE (Electrical Engineering PDFs)</option>
+                        <option value="ME">⚙️ ME (Mechanical Engineering PDFs)</option>
+                        <option value="CE">🏗️ CE (Civil Engineering PDFs)</option>
+                    </select>
+                    <button id="check-token-btn" class="search-btn">🔍 Check Status</button>
+                </div>
+
+                <!-- Token status card -->
+                <div id="token-status-card" class="hidden token-status-card" style="margin-top:16px;padding:16px;border-radius:12px;border:1px solid #e5e7eb;background:#f9fafb;">
+
+                    <!-- Header row -->
+                    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:12px;">
+                        <div>
+                            <strong id="token-card-label" style="font-size:16px;"></strong>
+                            <span id="token-card-checked" style="font-size:11px;color:#6b7280;display:block;margin-top:2px;"></span>
+                        </div>
+                        <span id="token-card-status-badge"></span>
+                    </div>
+
+                    <!-- Error message -->
+                    <div id="token-card-error" class="hidden" style="background:#fef2f2;border:1px solid #fca5a5;border-radius:8px;padding:10px 14px;font-size:13px;color:#dc2626;margin-bottom:12px;word-break:break-all;"></div>
+
+                    <!-- Auto-generate section -->
+                    <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:10px;padding:14px;margin-bottom:16px;">
+                        <p style="font-size:13px;color:#1e40af;margin:0 0 10px;font-weight:600;">
+                            🔄 Auto-Generate New Token 
+                        </p>
+                        <p style="font-size:12px;color:#3b82f6;margin:0 0 10px;">
+                            Click Reset → Google login opens → Sign in with correct Gmail → Allow/continue → ✅ Token auto-saved to DB → 🔄Refresh Page.
+                        </p>
+                        <button id="auto-generate-btn" class="add-notification-btn" style="background:linear-gradient(135deg,#3b82f6,#2563eb);margin-bottom:10px;">
+                            🔄 Reset/Auto-Generate Token
+                        </button>
+                        <!-- OAuth step instructions shown after clicking -->
+                        <div id="oauth-instructions" class="hidden" style="font-size:12px;color:#1e40af;line-height:1.8;background:#dbeafe;padding:10px;border-radius:8px;margin-top:8px;"></div>
+                    </div>
+
+                    <!-- Manual paste section -->
+                    <div>
+                        <!-- <label style="font-size:12px;font-weight:700;color:#4b5563;display:block;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px;">
+                            ✏️ Or Paste Token Manually
+                        </label> -->
+                        <textarea id="new-refresh-token-input"
+                            rows="0"
+                            placeholder="Ignore this text box. Its not in use."
+                            style="width:100%;padding:10px;border:1px solid #d1d5db;border-radius:8px;font-size:12px;font-family:monospace;resize:vertical;box-sizing:border-box;background:#fff;"></textarea>
+                        <!-- <div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap;">
+                            <button id="update-token-btn" class="add-notification-btn">✅ Set Token in DB</button>
+                            <button id="cancel-token-btn" class="cancel-btn">❌ Clear</button>
+                        </div> -->
+                        <div id="update-token-status" style="margin-top:8px;font-size:13px;font-weight:600;min-height:18px;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- All tokens overview -->
+            <div style="margin-top:20px;">
+                <h4>📋 All Drive Accounts Overview</h4>
+                <div id="all-tokens-list">
+                    <p class="token-muted-text" style="font-size:13px;">Click below to load overview of all 4 drive accounts.</p>
+                </div>
+                <button id="load-all-tokens-btn" class="load-more-btn" style="margin-top:10px; ">📥 Load All Token Status</button>
+            </div>
+        </div>
+
+        <!-- User Management Section -->
+        <div class="admin-section" data-admin-section="users">
+            <h3>👥 User Management 4️⃣</h3>
+            
+            <!-- Search & Filters -->
+            <div class="user-search-box">
+                <h4>🔍 Search & Filter Users</h4>
+                
+                <div class="search-row">
+                    <input type="text" id="user-search-input" placeholder="Search by email or username..." />
+                    <button id="user-search-btn" class="search-btn">🔍 Search</button>
+                </div>
+                
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <label for="filter-branch">Branch:</label>
+                        <select id="filter-branch">
+                            <option value="">All Branches</option>
+                            <option value="ee">EE</option>
+                            <option value="me">ME</option>
+                            <option value="ce">CE</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="filter-role">Role:</label>
+                        <select id="filter-role">
+                            <option value="all">All Roles</option>
+                            <option value="Student">Student</option>
+                            <option value="Professor">Professor</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="filter-blocked">Status:</label>
+                        <select id="filter-blocked">
+                            <option value="">All Status</option>
+                            <option value="false">Active</option>
+                            <option value="true">Blocked</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="filter-gender">Gender:</label>
+                        <select id="filter-gender">
+                            <option value="">All Genders</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <label for="filter-after-date">Registered After:</label>
+                        <input type="date" id="filter-after-date" />
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="filter-before-date">Registered Before:</label>
+                        <input type="date" id="filter-before-date" />
+                    </div>
+                    
+                    <button id="apply-filters-btn" class="apply-btn">✅ Apply Filters</button>
+                    <button id="clear-filters-btn" class="clear-btn">❌ Clear</button>
+                </div>
+            </div>
+            
+            <!-- Users List -->
+            <div class="users-list-container">
+                <h4>📋 Users List <span id="users-count-badge"></span></h4>
+                <div id="users-list">
+                    <!-- Users will be loaded here -->
+                </div>
+                <div id="users-load-more-container" class="load-more-container hidden">
+                    <button id="users-load-more-btn" class="load-more-btn">📥 Load More Users</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Details Modal -->
+    <div id="user-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeUserModal()">×</span>
+            <div id="modal-user-details">
+                <!-- User details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirm Delete Modal -->
+    <div id="delete-modal" class="modal hidden">
+        <div class="modal-content modal-small">
+            <h3>⚠️ Confirm Delete</h3>
+            <p>Are you sure you want to <strong>permanently delete</strong> this user?</p>
+            <p class="warning-text">This action cannot be undone!</p>
+            <p id="delete-user-info"></p>
+            <div class="modal-buttons">
+                <button id="confirm-delete-btn" class="delete-btn">🗑️ Yes, Delete</button>
+                <button onclick="closeDeleteModal()" class="cancel-btn">❌ Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Block Reason Modal -->
+    <div id="block-modal" class="modal hidden">
+        <div class="modal-content modal-small">
+            <h3>🚫 Block User</h3>
+            <p id="block-user-info"></p>
+            <label>Reason (optional):</label>
+            <textarea id="block-reason-input" rows="2" placeholder="Enter reason for blocking..."></textarea>
+            <div class="modal-buttons">
+                <button id="confirm-block-btn" class="block-btn">🚫 Block User</button>
+                <button onclick="closeBlockModal()" class="cancel-btn">❌ Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer-placeholder"></div>
+    <script src="script.js"></script>
+    <script src="admin-notifications.js"></script>
+    <script src="admin-users.js"></script>
+    <script src="admin-resources.js"></script>
+    <script src="admin-token.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const sectionSelect = document.getElementById('admin-section-select');
+            const adminSections = document.querySelectorAll('.admin-section[data-admin-section]');
+
+            if (!sectionSelect || !adminSections.length) return;
+
+            function showAdminSection(sectionName) {
+                adminSections.forEach((section) => {
+                    section.style.display = section.dataset.adminSection === sectionName ? 'block' : 'none';
+                });
+            }
+
+            showAdminSection(sectionSelect.value);
+            sectionSelect.addEventListener('change', function () {
+                showAdminSection(this.value);
+            });
+        });
+    </script>
+</body>
+</html>
