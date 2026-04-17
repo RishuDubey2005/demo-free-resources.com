@@ -483,7 +483,7 @@ const Welcome_Template = `
             </div>
             
             <center>
-                <a href="https://nitp-free-resources-com-8t1w.onrender.com" class="cta-button">
+                <a href="https://demo-free-content-com.onrender.com" class="cta-button">
                     🚀 Start Exploring Now
                 </a>
             </center>
