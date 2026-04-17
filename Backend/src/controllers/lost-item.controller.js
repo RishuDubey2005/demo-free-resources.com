@@ -52,7 +52,7 @@ async function uploadLostItem(req, res) {
         const uploadedBy = req.body.uploadedBy || 'anonymous_' + Date.now();
 
         // Upload to Google Drive
-        console.log('📤 Uploading image to Google Drive...');
+        console.log('📤 Uploading image...');
         const processed = await sharp(req.file.buffer)
             .resize(800, 800, { fit: "inside" })
             .jpeg({ quality: 70 })
